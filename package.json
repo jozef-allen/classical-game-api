@@ -1,0 +1,12 @@
+{
+  "name": "classical-game-api",
+  "version": "1.0.0",
+  "description": "API for the classical music quiz game",
+  "main": "api.js",
+  "scripts": {
+    "start": "node api.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
