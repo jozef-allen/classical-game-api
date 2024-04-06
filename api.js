@@ -14,11 +14,11 @@ app.use(cors());
 
 // Array to store high scores with default values
 let highScores = [
-    { playerName: 'Player1', score: 100 },
-    { playerName: 'Player2', score: 90 },
-    { playerName: 'Player3', score: 80 },
-    { playerName: 'Player4', score: 70 },
-    { playerName: 'Player5', score: 60 }
+    { playerName: 'Player1', score: 5 },
+    { playerName: 'Player2', score: 4 },
+    { playerName: 'Player3', score: 3 },
+    { playerName: 'Player4', score: 2 },
+    { playerName: 'Player5', score: 1 }
 ];
 
 // Define a route for the root URL
@@ -29,6 +29,11 @@ app.get('/', (req, res) => {
 // Endpoint to submit high scores
 app.post('/api/highscores', (req, res) => {
     const { playerName, score } = req.body;
+    if (highScores.length >= 10) {
+        // If there are already 10 high scores, remove the lowest one
+        highScores.pop();
+    }
+    // Add the new score to the array
     highScores.push({ playerName, score });
     res.sendStatus(201); // Created
 });
