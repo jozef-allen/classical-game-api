@@ -17,6 +17,11 @@ let highScores = [
     { playerName: 'Player5', score: 60 }
 ];
 
+// Define a route for the root URL
+app.get('/', (req, res) => {
+    res.send('Welcome to the Classical Game API!');
+  });
+
 // Endpoint to submit high scores
 app.post('/api/highscores', (req, res) => {
     const { playerName, score } = req.body;
