@@ -1,12 +1,16 @@
 // Import required modules
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Add cors module
 
 // Create an Express app
 const app = express();
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
+
+// Use cors middleware to allow requests from all origins
+app.use(cors());
 
 // Array to store high scores with default values
 let highScores = [
@@ -20,7 +24,7 @@ let highScores = [
 // Define a route for the root URL
 app.get('/', (req, res) => {
     res.send('Welcome to the Classical Game API!');
-  });
+});
 
 // Endpoint to submit high scores
 app.post('/api/highscores', (req, res) => {
