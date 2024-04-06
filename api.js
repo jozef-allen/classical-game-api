@@ -9,8 +9,17 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Use cors middleware to allow requests from all origins
-app.use(cors());
+// Use cors middleware to allow requests only from classical-music-quiz.com
+app.use(cors({
+  origin: function (origin, callback) {
+    // Check if the request origin matches classical-music-quiz.com
+    if (origin && origin.includes('classical-music-quiz.com')) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Deny the request
+    }
+  }
+}));
 
 // Array to store high scores with default values
 let highScores = [
